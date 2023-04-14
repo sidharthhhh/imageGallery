@@ -1,29 +1,24 @@
 import React, { useState } from 'react'
 import Gallery from '@/components/Gallery';
+import Navbar from '@/components/Navbar';
 // import { data } from 'autoprefixer';
 
 const index = () => {
 
-    const [images, setImages] = useState(null);
-    const [isShow, setIsShow] = useState(false);
+
+  const [isShow, setIsShow] = useState(true);
 
 
-    const Getimage = async () =>{
-          const stringData = await fetch("https://picsum.photos/v2/list")
-            const json = await stringData.json()
-            setImages(json);
-    }
+
 
   return (
     <>
-        <button onClick={()=> setIsShow(!isShow)}>
-            {isShow ? "hide" : "show"}
-            </button>
-        {isShow && <Gallery />}
-        <hr />
-        <button onClick={Getimage}>get image</button>
-        <hr />
-        {images ? JSON.stringify(images) : "no images"}
+       <Navbar />
+      {/* is buttom pe depend karra haii kii gallery show hogi ya nhi hogiii */}
+      <button className='mx-4 my-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75' onClick={() => setIsShow(!isShow)}>
+        {isShow ? "hide" : "show"}
+      </button>
+      {isShow && <Gallery />}
     </>
   )
 }
